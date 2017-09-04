@@ -1,118 +1,147 @@
-import React, { Component } from 'react';
-import './App.css';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
+import React, { Component } from "react";
+import "./App.css";
+import AppBar from "material-ui/AppBar";
+import Drawer from "material-ui/Drawer";
+import MenuItem from "material-ui/MenuItem";
+import IconButton from "material-ui/IconButton";
+import SettingsIcon from 'material-ui/svg-icons/action/settings';
+import LogOut from 'material-ui/svg-icons/action/power-settings-new';
+import {white} from 'material-ui/styles/colors';
 import {
   Table,
   TableBody,
   TableHeader,
   TableHeaderColumn,
   TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+  TableRowColumn
+} from "material-ui/Table";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
+import Paper from "material-ui/Paper";
 
 const style = {
   appBar: {
-    position: 'fixed',
+    justifyContent: "flex-start",
+    position: "relative",
     top: 0,
-    overflow: 'hidden',
-    maxHeight: 57
+    overflow: "hidden",
+    maxHeight: 57,
+    textAlign: "left"
   },
   drawer: {
-    position: 'fixed',
+    position: "fixed"
   },
   menuItems: {
     paddingTop: 57,
+    justifyContent: "flex-start",
+    textAlign: "left"
   },
   contentIfOpen: {
     paddingLeft: 256,
+    margin: 32,
+    textAlign: "left"
+  },
+  contentIfClose: {
+    margin: 32,
+    textAlign: "left"
+  },
+  status: {
+    backgroundColor: "blue",
+    color: "white",
+    padding: 5
   }
 };
 
-class App extends Component {
 
+
+class App extends Component {
   constructor(props) {
-  super(props);
-  this.state = {open: false};
-  }
+    super(props);
+    this.state = { open: true };
+  };
 
   handleToggle = () => {
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
     console.log(this.state);
-  }
+  };
 
   render() {
-    console.log('AVC');
     return (
       <MuiThemeProvider>
+        <div className="App">
+          <Drawer open={this.state.open} docked={true} style={style.drawer}>
+            <div style={style.menuItems}>
+              <MenuItem>Projekt 1</MenuItem>
+              <MenuItem>Projekt 2</MenuItem>
+            </div>
+          </Drawer>
 
-      <div className="App">
+          <AppBar
+            title="LanHelpdeskRest"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            onLeftIconButtonTouchTap={this.handleToggle}
+            iconElementRight={<span><IconButton><SettingsIcon color={white} /></IconButton> <IconButton><LogOut color={white}/></IconButton></span>}
+            style={style.appBar}
+          />
 
-      <Drawer
-          open={this.state.open}
-          docked={true}
-          style={style.drawer}
+          <div
+            style={this.state.open ? style.contentIfOpen : style.contentIfClose}
           >
-        <div style={style.menuItems}>
-        <MenuItem>Menu Item</MenuItem>
-        <MenuItem>Menu Item 2</MenuItem>
+            <h2>Projekt name</h2>
+            <Paper style={style} zDepth={1} rounded={false}>
+              <Table fixedHeader={true} style={{ tableLayout: "auto" }}>
+                <TableBody>
+                  <TableRow>
+                    <TableHeaderColumn>ID</TableHeaderColumn>
+                    <TableHeaderColumn>Name</TableHeaderColumn>
+                    <TableHeaderColumn>Requester</TableHeaderColumn>
+                    <TableHeaderColumn>Company</TableHeaderColumn>
+                    <TableHeaderColumn>Assigned</TableHeaderColumn>
+                    <TableHeaderColumn>Created</TableHeaderColumn>
+                    <TableHeaderColumn>Status</TableHeaderColumn>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableRowColumn>1</TableRowColumn>
+                    <TableRowColumn>
+                      Spraviť cenovú ponuku na SEO www.primaclima.sk a
+                      carrier-transicold.hu
+                    </TableRowColumn>
+                    <TableRowColumn>John Smith</TableRowColumn>
+                    <TableRowColumn>ASTON ESQUIRE s.r.o.</TableRowColumn>
+                    <TableRowColumn>Randal White</TableRowColumn>
+                    <TableRowColumn>8:00 27.9.2017</TableRowColumn>
+                    <TableRowColumn>
+                      <span style={style.status}>NEW</span>
+                    </TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>1</TableRowColumn>
+                    <TableRowColumn>Task 1</TableRowColumn>
+                    <TableRowColumn>John Smith</TableRowColumn>
+                    <TableRowColumn>ASTON ESQUIRE s.r.o.</TableRowColumn>
+                    <TableRowColumn>Randal White</TableRowColumn>
+                    <TableRowColumn>8:00 27.9.2017</TableRowColumn>
+                    <TableRowColumn>
+                      <span style={style.status}>NEW</span>
+                    </TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>1</TableRowColumn>
+                    <TableRowColumn>Task 1</TableRowColumn>
+                    <TableRowColumn>John Smith</TableRowColumn>
+                    <TableRowColumn>ASTON ESQUIRE s.r.o.</TableRowColumn>
+                    <TableRowColumn>Randal White</TableRowColumn>
+                    <TableRowColumn>8:00 27.9.2017</TableRowColumn>
+                    <TableRowColumn>
+                      <span style={style.status}>NEW</span>
+                    </TableRowColumn>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Paper>
+          </div>
         </div>
-
-      </Drawer>
-
-      <AppBar
-        title="Title"
-        iconClassNameRight="muidocs-icon-navigation-expand-more"
-        onLeftIconButtonTouchTap={this.handleToggle}
-        style={style.appBar}
-       />
-
-     <Card style={this.state.open?style.contentIfOpen:null}>
-       <Table>
-  <TableHeader>
-    <TableRow>
-      <TableHeaderColumn>ID</TableHeaderColumn>
-      <TableHeaderColumn>Name</TableHeaderColumn>
-      <TableHeaderColumn>Status</TableHeaderColumn>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableRowColumn>1</TableRowColumn>
-      <TableRowColumn>John Smith</TableRowColumn>
-      <TableRowColumn>Employed</TableRowColumn>
-    </TableRow>
-    <TableRow>
-      <TableRowColumn>2</TableRowColumn>
-      <TableRowColumn>Randal White</TableRowColumn>
-      <TableRowColumn>Unemployed</TableRowColumn>
-    </TableRow>
-    <TableRow>
-      <TableRowColumn>3</TableRowColumn>
-      <TableRowColumn>Stephanie Sanders</TableRowColumn>
-      <TableRowColumn>Employed</TableRowColumn>
-    </TableRow>
-    <TableRow>
-      <TableRowColumn>4</TableRowColumn>
-      <TableRowColumn>Steve Brown</TableRowColumn>
-      <TableRowColumn>Employed</TableRowColumn>
-    </TableRow>
-    <TableRow>
-      <TableRowColumn>5</TableRowColumn>
-      <TableRowColumn>Christopher Nolan</TableRowColumn>
-      <TableRowColumn>Unemployed</TableRowColumn>
-    </TableRow>
-  </TableBody>
-</Table>
-     </Card>
-
-
-
-      </div>
       </MuiThemeProvider>
     );
   }
