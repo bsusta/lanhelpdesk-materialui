@@ -16,7 +16,11 @@ class Sidebar extends Component {
       return (<div>Loading...</div>);
     }
     return (
-      <div>
+      <div style={{
+        paddingTop: 100,
+        justifyContent: "flex-start",
+        textAlign: "left"
+      }}>
 
       <Link to="/task-edit">Task edit</Link>
       <MenuItem disabled={true} style={{color:'#3F51B5'}}>

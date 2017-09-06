@@ -10,52 +10,14 @@ import LogOut from "material-ui/svg-icons/action/power-settings-new";
 import { white } from "material-ui/styles/colors";
 import { Link } from "react-router-dom";
 
-const style = {
-  appBar: {
-    justifyContent: "flex-start",
-    position: "relative",
-    top: 0,
-    overflow: "hidden",
-    maxHeight: 57,
-    textAlign: "left"
-  },
-  drawer: {
-    position: "fixed"
-  },
-  menuItems: {
-    paddingTop: 57,
-    justifyContent: "flex-start",
-    textAlign: "left"
-  },
-  contentIfOpen: {
-    paddingLeft: 256,
-    margin: 32,
-    textAlign: "left"
-  },
-  contentIfClose: {
-    margin: 32,
-    textAlign: "left"
-  },
-  status: {
-    backgroundColor: "blue",
-    color: "white",
-    padding: 5
-  }
-};
-
 class Sidebar extends Component {
   render() {
     return (
       <div className="App">
-        <Drawer open={this.props.opened} docked={true}>
-          <SidebarContent />
-        </Drawer>
-
         <AppBar
           title="Lanhelpdesk Website"
           style={{
-            backgroundColor: "#3F51B5",
-            paddingLeft: this.props.opened ? 272 : 16
+            backgroundColor: "#3F51B5"
           }}
           iconElementRight={
             <span>
@@ -73,6 +35,9 @@ class Sidebar extends Component {
             this.props.opened ? this.props.closeDrawer : this.props.openDrawer
           }
         />
+        <Drawer open={this.props.opened} docked={true} style={{position: "fixed"}}>
+          <SidebarContent />
+        </Drawer>
       </div>
     );
   }
