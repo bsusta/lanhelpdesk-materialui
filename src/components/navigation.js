@@ -16,6 +16,8 @@ import Statuses from "./settings/statuses";
 import TaskAttributes from "./settings/taskAttributes";
 import Units from "./settings/units";
 import Users from "./settings/users";
+import UserAdd from "./settings/users/userAdd";
+import UserEdit from "./settings/users/userEdit";
 
 class Navigation extends Component {
   render() {
@@ -25,19 +27,21 @@ class Navigation extends Component {
           <Sidebar />
           <div style={{ paddingLeft: this.props.opened ? 256 : 0 }}>
             <Switch>
+              <Route exact path="/" component={TaskList} />
               <Route path="/task/edit" component={TaskEdit} />
               <Route exact path="/settings" component={SettingsList} />
               <Route exact path="/settings/companies" component={Companies} />
               <Route exact path="/settings/companies/add" component={CompanyAdd} />
-              <Route path="/settings/companies/edit" component={CompanyEdit} />
-              <Route path="/settings/imaps" component={Imaps} />
-              <Route path="/settings/roles" component={Roles} />
-              <Route path="/settings/smtps" component={Smtps} />
-              <Route path="/settings/statuses" component={Statuses} />
-              <Route path="/settings/task-attributes" component={TaskAttributes} />
-              <Route path="/settings/units" component={Units} />
-              <Route path="/settings/users" component={Users} />
-              <Route path="/" component={TaskList} />
+              <Route path="/settings/companies/edit/:id" component={CompanyEdit} />
+              <Route exact path="/settings/imaps" component={Imaps} />
+              <Route exact path="/settings/roles" component={Roles} />
+              <Route exact path="/settings/smtps" component={Smtps} />
+              <Route exact path="/settings/statuses" component={Statuses} />
+              <Route exact path="/settings/task-attributes" component={TaskAttributes} />
+              <Route exact path="/settings/units" component={Units} />
+              <Route exact path="/settings/users" component={Users} />
+              <Route exact path="/settings/users/add" component={UserAdd} />
+              <Route path="/settings/users/edit/:id" component={UserEdit} />
             </Switch>
           </div>
         </div>

@@ -3,25 +3,49 @@ import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Checkbox from "material-ui/Checkbox";
-import {editCompany} from '../../../redux/actions';
+import {editCompany,openEditingOfCompany} from '../../../redux/actions';
 import {processInteger} from '../../helperFunctions';
 
 class CompanyEdit extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title:this.props.company.title,
-      subscription_time:this.props.company.subscription_time,
-      ico:this.props.company.ico,
-      dic:this.props.company.dic,
-      ic_dph:this.props.company.ic_dph,
-      street:this.props.company.street,
-      city:this.props.company.city,
-      zip:this.props.company.zip,
-      country:this.props.company.country,
-      is_active:true,
-      phone:this.props.company.phone
-    };
+    if(this.props.company){
+      this.state = {
+        title:this.props.company.title,
+        subscription_time:this.props.company.subscription_time,
+        ico:this.props.company.ico,
+        dic:this.props.company.dic,
+        ic_dph:this.props.company.ic_dph,
+        street:this.props.company.street,
+        city:this.props.company.city,
+        zip:this.props.company.zip,
+        country:this.props.company.country,
+        is_active:true,
+        phone:this.props.company.phone
+      };
+    }
+    else{
+      this.state = {
+        title:'',
+        subscription_time:'',
+        ico:'',
+        dic:'',
+        ic_dph:'',
+        street:'',
+        city:'',
+        zip:'',
+        country:'',
+        is_active:true,
+        phone:''
+      };
+    }
+  }
+
+  componentWillMount(){
+    if(!this.props.company){
+      this.props.history.goBack();
+      this.props.openEditingOfCompany(parseInt(this.props.match.params.id),this.props.history);
+    }
   }
 
   submit(){
@@ -147,4 +171,4 @@ const mapStateToProps = ({ taskData }) => {
   return {company};
 };
 
-export default connect(mapStateToProps, {editCompany})(CompanyEdit);
+export default connect(mapStateToProps, {editCompany,openEditingOfCompany})(CompanyEdit);
