@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Sidebar from "./sidebar";
 import TaskList from "./taskList/taskList";
+import TaskEdit from "./taskEdit";
 import SettingsList from "./settings/settingsList";
 import Companies from "./settings/companies";
 import CompanyAdd from "./settings/companies/companyAdd";
@@ -25,6 +26,7 @@ class Navigation extends Component {
           <div style={{ paddingLeft: this.props.opened ? 256 : 0 }}>
             <Switch>
               <Route exact path="/" component={TaskList} />
+              <Route path="/task-edit" component={TaskEdit} />
               <Route path="/settings" component={SettingsList} />
               <Route path="/companies" component={Companies} />
               <Route path="/company-add" component={CompanyAdd} />
