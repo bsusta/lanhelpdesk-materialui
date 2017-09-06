@@ -70,7 +70,7 @@ class TaskList extends Component {
             {
               this.props.tasks.map((task)=>(
             <TableRow key={task.id}>
-              <TableRowColumn><Link style={{textDecoration:'none',fontSize:15}} to={ `/editTask/${task.id}` }>{task.title}</Link></TableRowColumn>
+              <TableRowColumn><Link style={{textDecoration:'none',fontSize:15}} to={ `/task/edit/${task.id}` }>{task.title}</Link></TableRowColumn>
               <TableRowColumn>{task.requestedBy.name}</TableRowColumn>
               <TableRowColumn>{task.company.title}</TableRowColumn>
               <TableRowColumn>{task.assignedTo.name}</TableRowColumn>

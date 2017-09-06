@@ -36,7 +36,7 @@ class Companies extends Component {
           <h2>Companies</h2>
         </div>
         <div>
-          <Link to="/company-add">
+          <Link to="/companies/add">
             <RaisedButton
               style={{ marginLeft: 24 }}
               label="Add"

@@ -22,7 +22,7 @@ class Sidebar extends Component {
         textAlign: "left"
       }}>
 
-      <Link to="/task-edit">Task edit</Link>
+      <Link to="/task/edit">Task edit</Link>
       <MenuItem disabled={true} style={{color:'#3F51B5'}}>
         <h2>Projekty</h2>
       </MenuItem>

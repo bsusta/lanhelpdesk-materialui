@@ -27,23 +27,23 @@ class SettingsList extends Component {
           <h2>Settings</h2>
         </div>
         <List>
-          <ListItem primaryText={<Link to="/companies">Companies</Link>} />
+          <ListItem primaryText={<Link to="/settings/companies">Companies</Link>} />
           <Divider />
-          <ListItem primaryText={<Link to="/imaps">IMAPs</Link>} />
+          <ListItem primaryText={<Link to="/settings/imaps">IMAPs</Link>} />
           <Divider />
-          <ListItem primaryText={<Link to="/roles">Roles</Link>} />
+          <ListItem primaryText={<Link to="/settings/roles">Roles</Link>} />
           <Divider />
-          <ListItem primaryText={<Link to="/smtps">SMTPs</Link>} />
+          <ListItem primaryText={<Link to="/settings/smtps">SMTPs</Link>} />
           <Divider />
-          <ListItem primaryText={<Link to="/statuses">Statuses</Link>} />
+          <ListItem primaryText={<Link to="/settings/statuses">Statuses</Link>} />
           <Divider />
           <ListItem
-            primaryText={<Link to="/task-attributes">Task attributes</Link>}
+            primaryText={<Link to="/settings/task-attributes">Task attributes</Link>}
           />
           <Divider />
-          <ListItem primaryText={<Link to="/units">Units</Link>} />
+          <ListItem primaryText={<Link to="/settings/units">Units</Link>} />
           <Divider />
-          <ListItem primaryText={<Link to="/users">Users</Link>} />
+          <ListItem primaryText={<Link to="/settings/users">Users</Link>} />
           <Divider />
         </List>
       </div>

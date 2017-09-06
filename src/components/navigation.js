@@ -26,17 +26,18 @@ class Navigation extends Component {
           <div style={{ paddingLeft: this.props.opened ? 256 : 0 }}>
             <Switch>
               <Route exact path="/" component={TaskList} />
-              <Route path="/task-edit" component={TaskEdit} />
-              <Route path="/settings" component={SettingsList} />
-              <Route path="/companies" component={Companies} />
-              <Route path="/company-add" component={CompanyAdd} />
-              <Route path="/imaps" component={Imaps} />
-              <Route path="/roles" component={Roles} />
-              <Route path="/smtps" component={Smtps} />
-              <Route path="/statuses" component={Statuses} />
-              <Route path="/task-attributes" component={TaskAttributes} />
-              <Route path="/units" component={Units} />
-              <Route path="/users" component={Users} />
+              <Route path="/task/edit" component={TaskEdit} />
+              <Route exact path="/settings" component={SettingsList} />
+              <Route exact path="/settings/companies" component={Companies} />
+              <Route exact path="/settings/companies/add" component={CompanyAdd} />
+              <Route exact path="/settings/companies/edit" component={CompanyAdd} />
+              <Route path="/settings/imaps" component={Imaps} />
+              <Route path="/settings/roles" component={Roles} />
+              <Route path="/settings/smtps" component={Smtps} />
+              <Route path="/settings/statuses" component={Statuses} />
+              <Route path="/settings/task-attributes" component={TaskAttributes} />
+              <Route path="/settings/units" component={Units} />
+              <Route path="/settings/users" component={Users} />
             </Switch>
           </div>
         </div>
