@@ -95,6 +95,70 @@
       "tel": "44882325",
       "signature": "ashes to ashes",
       "id": 3
+    },
+    {
+      "name": "abce",
+      "email": "defe",
+      "company": {
+        "id": 1,
+        "title": "Web-Solutions"
+      },
+      "signature": "podpise",
+      "is_active": false,
+      "user_role": {
+        "id": 1
+      },
+      "username": "nehe",
+      "function": "monagere",
+      "mobile": "0999e",
+      "tel": "0991e",
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "mk",
+      "name": "Matej Kurka",
+      "email": "mk@email.sk",
+      "is_active": true,
+      "company": {
+        "id": "1",
+        "title": "prva firma"
+      }
+    },
+    {
+      "id": 2,
+      "username": "pk",
+      "name": "Peter Karpa",
+      "email": "pk@email.sk",
+      "is_active": true,
+      "company": {
+        "id": "1",
+        "title": "prva firma"
+      }
+    },
+    {
+      "username": "mohikan",
+      "name": "krakowo",
+      "email": "mash",
+      "company": {
+        "id": 2,
+        "title": "LanSystems"
+      },
+      "is_active": false,
+      "id": 3
+    },
+    {
+      "username": "nehe",
+      "name": "abce",
+      "email": "defe",
+      "is_active": false,
+      "company": {
+        "id": 1,
+        "title": "Web-Solutions"
+      },
+      "id": 4
     }
   ],
   "tasks": [
@@ -235,26 +299,6 @@
       "status": {
         "id": 1
       }
-    }
-  ],
-  "users": [
-    {
-      "id": 1,
-      "username": "mk",
-      "name": "Matej Kurka",
-      "email": "mk@email.sk"
-    },
-    {
-      "id": 2,
-      "username": "pk",
-      "name": "Peter Karpa",
-      "email": "pk@email.sk"
-    },
-    {
-      "username": "mohikan",
-      "name": "krakowo",
-      "email": "mash",
-      "id": 3
     }
   ],
   "projects": [

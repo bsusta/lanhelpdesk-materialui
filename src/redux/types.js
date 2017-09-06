@@ -35,6 +35,7 @@ export const SET_ITEM = 'SET_ITEM';
 export const SET_USER_ATTRIBUTES = 'SET_USER_ATTRIBUTES';
 export const ADD_USER = 'ADD_USER';
 export const EDIT_USER_LIST = 'EDIT_USER_LIST';
+export const DELETE_USER = 'DELETE_USER';
 
 export const ADD_COMPANY = 'ADD_COMPANY';
 export const SET_COMPANY = 'SET_COMPANY';

@@ -1,8 +1,121 @@
 import {SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_STATUSES, SET_USERS, SET_UNITS, SET_TASK, SET_TASKS_AND_PROJECTS,
   START_LOADING,SET_TASK_ATTRIBUTES, EDIT_TASK_LIST, ADD_TO_TASK_LIST, SET_COMMENTS, START_LOADING_COMMENTS,ADD_NEW_COMMENT,
   START_LOADING_ITEMS, SET_ITEMS, ADD_NEW_ITEM, DELETE_ITEM, EDIT_ITEM_LIST, SET_ITEM, SET_USER_ATTRIBUTES,EDIT_USER_LIST,
-  DELETE_TASK, ADD_USER, ADD_COMPANY,SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,DELETE_COMPANY } from '../types';
+  DELETE_TASK, ADD_USER, ADD_COMPANY,SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,DELETE_COMPANY, DELETE_USER } from '../types';
 import {TASK_LIST, PROJECT_LIST,COMPANIES_LIST,STATUSES_LIST,USERS_LIST,UNITS_LIST, TASK, COMMENTS, ITEMS_LIST, USER, USER_ROLES, COMPANY } from '../urls';
+
+export const openAddingOfUser = (history) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(COMPANIES_LIST, {
+        method: 'GET',
+      }),
+      fetch(USER_ROLES, {
+        method: 'GET',
+      })
+    ]).then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
+      dispatch({type: SET_USER_ATTRIBUTES, payload:{companies:response1,user_roles:response2}});
+      history.push('/settings/users/add');
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const openEditingOfUser = (id,history) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(COMPANIES_LIST, {
+        method: 'GET',
+      }),
+      fetch(USER_ROLES, {
+        method: 'GET',
+      }),
+      fetch(USER+'/'+id, {
+        method: 'GET',
+      }),
+    ]).then(([response1,response2,response3])=>Promise.all([response1.json(),response2.json(),response3.json()]).then(([response1,response2,response3])=>{
+      dispatch({type: SET_USER_ATTRIBUTES, payload:{companies:response1,user_roles:response2,user:response3}});
+      history.push('/settings/users/edit/'+id);
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const addUser = (user,userInList) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(USERS_LIST, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body:JSON.stringify(userInList),
+      }),
+      fetch(USER, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body:JSON.stringify(user),
+      })
+    ]).then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
+      dispatch({type: ADD_USER, payload:{user:Object.assign({},{id:response2.id},user:userInList)}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const editUser = (user,listUser) => {
+  return (dispatch) => {
+    let listURL = USERS_LIST + '/' + listUser.id;
+    let userURL = USER + '/' + listUser.id;
+    Promise.all([
+      fetch(listURL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify(listUser),
+      }),
+      fetch(userURL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify(user),
+      })
+    ])
+    .then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
+      dispatch({type: EDIT_USER_LIST, payload:{user:listUser}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+
+export const deleteUser = (id) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(USERS_LIST+'/'+id, {
+        method: 'DELETE',
+      }),
+      fetch(USER+'/'+id, {
+        method: 'DELETE',
+      })
+    ]).then((responses)=>dispatch({type: DELETE_USER, payload:{id}}))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
 
 export const addCompany = (newCompany) => {
   return (dispatch) => {
@@ -141,105 +254,6 @@ export const startLoading = () => {
 
 
 
-export const openEditingOfUser = (id) => {
-  return (dispatch) => {
-    Promise.all([
-      fetch(COMPANIES_LIST, {
-        method: 'GET',
-      }),
-      fetch(USER_ROLES, {
-        method: 'GET',
-      }),
-      fetch(USER+'/'+id, {
-        method: 'GET',
-      }),
-    ]).then(([response1,response2,response3])=>Promise.all([response1.json(),response2.json(),response3.json()]).then(([response1,response2,response3])=>{
-      dispatch({type: SET_USER_ATTRIBUTES, payload:{companies:response1,user_roles:response2,user:response3}});
-      //Link
-    }))
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
-};
-
-export const addUser = (newUser,listUser) => {
-  return (dispatch) => {
-    Promise.all([
-      fetch(USERS_LIST, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body:JSON.stringify(listUser),
-      }),
-      fetch(USER, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body:JSON.stringify(newUser),
-      })
-    ]).then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
-      dispatch({type: ADD_USER, payload:{user:Object.assign({},listUser,{id:response2.id})}});
-    }))
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
-};
-
-export const openAddingOfUser = () => {
-  return (dispatch) => {
-    Promise.all([
-      fetch(COMPANIES_LIST, {
-        method: 'GET',
-      }),
-      fetch(USER_ROLES, {
-        method: 'GET',
-      })
-    ]).then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
-      dispatch({type: SET_USER_ATTRIBUTES, payload:{companies:response1,user_roles:response2}});
-      //Link
-    }))
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
-};
-
-export const editUser = (user,listUser) => {
-  return (dispatch) => {
-    let listURL = USERS_LIST + '/' + listUser.id;
-    let userURL = USER + '/' + listUser.id;
-    Promise.all([
-      fetch(listURL, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'PATCH',
-        body:JSON.stringify(listUser),
-      }),
-      fetch(userURL, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'PATCH',
-        body:JSON.stringify(user),
-      })
-    ])
-    .then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
-      dispatch({type: EDIT_USER_LIST, payload:{user:listUser}});
-    }))
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
-};
 
 
 

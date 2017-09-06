@@ -18,8 +18,6 @@ import FlatButton from 'material-ui/FlatButton';
 
 import {getCompanies,startLoading, openEditingOfCompany, deleteCompany} from '../../../redux/actions';
 
-
-
 class Companies extends Component {
   constructor(props){
     super(props);
