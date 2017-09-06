@@ -1,7 +1,8 @@
 
 import { SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_STATUSES, SET_USERS, SET_CUSTOM_ATTRIBUTES, SET_UNITS, SET_TASK,SET_TASKS_AND_PROJECTS,START_LOADING,
   SET_TASK_ATTRIBUTES, EDIT_TASK_LIST, ADD_TO_TASK_LIST, SET_COMMENTS, START_LOADING_COMMENTS,ADD_NEW_COMMENT, START_LOADING_ITEMS, SET_ITEMS,
-  ADD_NEW_ITEM, DELETE_ITEM,EDIT_ITEM_LIST, SET_ITEM, DELETE_TASK, SET_USER_ATTRIBUTES, ADD_USER, EDIT_USER_LIST, ADD_COMPANY, SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS } from '../types';
+  ADD_NEW_ITEM, DELETE_ITEM,EDIT_ITEM_LIST, SET_ITEM, DELETE_TASK, SET_USER_ATTRIBUTES, ADD_USER, EDIT_USER_LIST, ADD_COMPANY, SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,
+  DELETE_COMPANY } from '../types';
 
 const initialState = {
   tasks:[],
@@ -45,6 +46,14 @@ export default function taskReducer (state = initialState, action) {
       return {
         ...state,
         companies:[action.payload.company,...state.companies]
+      };
+    }
+    case DELETE_COMPANY:{
+      let newCompanies= [...state.companies];
+      newCompanies.splice(newCompanies.findIndex((companies)=>companies.id==action.payload.id),1);
+      return {
+        ...state,
+        companies:newCompanies
       };
     }
     case EDIT_USER_LIST:{
