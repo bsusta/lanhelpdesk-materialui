@@ -30,6 +30,7 @@ class TaskList extends Component {
     this.props.getTasks();
   }
   render() {
+    console.log(this.context.router);
     if(this.props.loadingData){
       return (<div>Loading...</div>);
     }

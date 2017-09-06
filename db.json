@@ -2,19 +2,13 @@
   "companies": [
     {
       "id": 1,
-      "title": "Web-Solutions"
+      "title": "Web-Solutions",
+      "is_active": true
     },
     {
       "id": 2,
-      "title": "LanSystems"
-    },
-    {
-      "title": "tiiitl",
-      "id": 3
-    },
-    {
-      "title": "tiiitle",
-      "id": 4
+      "title": "LanSystems",
+      "is_active": true
     }
   ],
   "company": [
@@ -25,6 +19,7 @@
       "ico": "1102587",
       "dic": "12587459644",
       "ic_dph": "12587459644",
+      "phone": "0944788899",
       "street": "Cesta 125",
       "city": "Bratislava",
       "zip": "02587",
@@ -38,37 +33,12 @@
       "ico": "110258782",
       "dic": "12587458996244",
       "ic_dph": null,
+      "phone": "0944788899",
       "street": "Ina cesta 125",
       "city": "Bratislava",
       "zip": "021478",
       "country": "Slovenska Republika",
       "is_active": true
-    },
-    {
-      "title": "tiiitl",
-      "subscription_time": 145,
-      "ico": "2",
-      "dic": "3",
-      "ic_dph": "4",
-      "street": "striii",
-      "city": "blava je riek",
-      "zip": "5",
-      "country": "slova",
-      "is_active": false,
-      "id": 3
-    },
-    {
-      "title": "tiiitle",
-      "subscription_time": 1456,
-      "ico": "22",
-      "dic": "33",
-      "ic_dph": "44",
-      "street": "striiid",
-      "city": "blava je rieka",
-      "zip": "55",
-      "country": "slovak",
-      "is_active": true,
-      "id": 4
     }
   ],
   "user": [

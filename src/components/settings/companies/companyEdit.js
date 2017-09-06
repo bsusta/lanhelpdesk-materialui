@@ -3,30 +3,30 @@ import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Checkbox from "material-ui/Checkbox";
-import {addCompany} from '../../../redux/actions';
+import {editCompany} from '../../../redux/actions';
 import {processInteger} from '../../helperFunctions';
 
-class CompanyAdd extends Component {
+class CompanyEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title:'',
-      subscription_time:'',
-      ico:'',
-      dic:'',
-      ic_dph:'',
-      street:'',
-      city:'',
-      zip:'',
-      country:'',
+      title:this.props.company.title,
+      subscription_time:this.props.company.subscription_time,
+      ico:this.props.company.ico,
+      dic:this.props.company.dic,
+      ic_dph:this.props.company.ic_dph,
+      street:this.props.company.street,
+      city:this.props.company.city,
+      zip:this.props.company.zip,
+      country:this.props.company.country,
       is_active:true,
-      phone:''
+      phone:this.props.company.phone
     };
   }
 
   submit(){
     let company=Object.assign({},this.state,{subscription_time:parseInt(this.state.subscription_time)});
-    this.props.addCompany(company);
+    this.props.editCompany(company,this.props.company.id);
     this.props.history.goBack();
   }
 
@@ -40,7 +40,7 @@ class CompanyAdd extends Component {
             marginBottom: 10
           }}
         >
-          <h2>CompanyAdd</h2>
+          <h2>Company Edit</h2>
         </div>
         <Checkbox label="Active" checked={this.state.is_active} onCheck={()=>this.setState({is_active:!this.state.is_active})} />
         <TextField
@@ -143,7 +143,8 @@ class CompanyAdd extends Component {
 }
 
 const mapStateToProps = ({ taskData }) => {
-  return {};
+  const {company} = taskData;
+  return {company};
 };
 
-export default connect(mapStateToProps, {addCompany})(CompanyAdd);
+export default connect(mapStateToProps, {editCompany})(CompanyEdit);
