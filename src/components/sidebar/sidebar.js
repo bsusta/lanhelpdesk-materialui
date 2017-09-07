@@ -1,51 +1,53 @@
-import React, { Component } from 'react';
-import MenuItem from 'material-ui/MenuItem';
-import { connect } from 'react-redux';
-import Badge from 'material-ui/Badge';
-import {getProjects} from '../../redux/actions';
+import React, { Component } from "react";
+import MenuItem from "material-ui/MenuItem";
+import { connect } from "react-redux";
+import Badge from "material-ui/Badge";
+import { getProjects } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import ProjectIcon from "material-ui/svg-icons/file/folder-open";
+import AddIcon from "material-ui/svg-icons/content/add";
+import { List, ListItem } from "material-ui/List";
 
 class Sidebar extends Component {
-
-  componentWillMount(){
+  componentWillMount() {
     this.props.getProjects();
   }
 
   render() {
-    if(this.props.loadingProjects){
-      return (<div>Loading...</div>);
+    if (this.props.loadingProjects) {
+      return <div>Loading...</div>;
     }
     return (
-      <div style={{
-        paddingTop: 100,
-        justifyContent: "flex-start",
-        textAlign: "left"
-      }}>
-
-      <Link to="/task/edit">Task edit</Link>
-      <MenuItem disabled={true} style={{color:'#3F51B5'}}>
-        <h2>Projekty</h2>
-      </MenuItem>
-
-        {
-          this.props.projects.map((project)=>
-            <MenuItem key={project.id}>{project.title}
-              <Badge
-                style={{top:15}}
-                badgeContent={project.numberOfTasks}
-                secondary={true}
-              />
-            </MenuItem>
-          )
-        }
+      <div
+        style={{
+          paddingTop: 100,
+          justifyContent: "flex-start",
+          textAlign: "left"
+        }}
+      >
+        <List>
+          <Link to="/task/edit">
+            <ListItem primaryText="Task" leftIcon={<AddIcon />} />
+          </Link>
+        </List>
+        {this.props.projects.map(project => (
+          <MenuItem key={project.id} leftIcon={<ProjectIcon />}>
+            {project.title}
+            <Badge
+              style={{ top: 15, float: "right" }}
+              badgeContent={project.numberOfTasks}
+              secondary={true}
+            />
+          </MenuItem>
+        ))}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({taskData,login}) => {
-  const {projects,loadingProjects} = taskData;
-  return {projects,loadingProjects};
+const mapStateToProps = ({ taskData, login }) => {
+  const { projects, loadingProjects } = taskData;
+  return { projects, loadingProjects };
 };
 
-export default connect(mapStateToProps,{getProjects})(Sidebar);
+export default connect(mapStateToProps, { getProjects })(Sidebar);
