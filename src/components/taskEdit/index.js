@@ -83,6 +83,11 @@ class TaskEdit extends Component {
               floatingLabelFixed={true}
               rows={2}
             />
+            <TextField
+              floatingLabelText="Work time"
+              fullWidth={true}
+              floatingLabelFixed={true}
+            />
           <MaterialTable/>
           <CommentAdd/>
           <CommentsList/>
