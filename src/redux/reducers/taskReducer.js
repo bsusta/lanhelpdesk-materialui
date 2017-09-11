@@ -2,7 +2,7 @@
 import { SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_STATUSES, SET_USERS, SET_CUSTOM_ATTRIBUTES, SET_UNITS, SET_TASK,SET_TASKS_AND_PROJECTS,START_LOADING,
   SET_TASK_ATTRIBUTES, EDIT_TASK_LIST, ADD_TO_TASK_LIST, SET_COMMENTS, START_LOADING_COMMENTS,ADD_NEW_COMMENT, START_LOADING_ITEMS, SET_ITEMS,
   ADD_NEW_ITEM, DELETE_ITEM,EDIT_ITEM_LIST, SET_ITEM, DELETE_TASK, SET_USER_ATTRIBUTES, ADD_USER, EDIT_USER_LIST, ADD_COMPANY, SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,
-  DELETE_COMPANY,DELETE_USER } from '../types';
+  DELETE_COMPANY,DELETE_USER,SET_USER_ROLES, ADD_ROLE, DELETE_ROLE, SET_USER_ROLE, EDIT_USER_ROLES, DELETE_STATUS, ADD_STATUS, SET_STATUS, EDIT_STATUSES} from '../types';
 
 const initialState = {
   tasks:[],
@@ -10,7 +10,6 @@ const initialState = {
   projects:[],
   companies:[],
   units:[],
-  statuses:[],
   customAttributes:[],
   task:null,
   project:null,
@@ -23,11 +22,86 @@ const initialState = {
   item:null,
   user:null,
   user_roles:[],
+  user_role:null,
   company:null,
+  statuses:[],
+  status:null,
 };
 
 export default function taskReducer (state = initialState, action) {
   switch (action.type) {
+    case EDIT_STATUSES:{
+      let newStatuses= [...state.statuses];
+      newStatuses.splice(newStatuses.findIndex((status)=>status.id==action.payload.status.id),1,action.payload.status);
+      return {
+        ...state,
+        statuses:newStatuses
+      };
+    }
+    case SET_STATUSES:
+      return {
+        ...state,
+        statuses: action.payload.statuses,
+        loadingData:false,
+      };
+    case SET_STATUS:{
+      return {
+        ...state,
+        status:action.payload.status,
+        loadingData:false,
+      };
+    }
+    case ADD_STATUS:{
+      return {
+        ...state,
+        statuses:[action.payload.status,...state.statuses]
+      };
+    }
+    case DELETE_STATUS:{
+      let newStatuses= [...state.statuses];
+      newStatuses.splice(newStatuses.findIndex((status)=>status.id==action.payload.id),1);
+      return {
+        ...state,
+        statuses:newStatuses
+      };
+    }
+    case SET_USER_ROLES:{
+      return {
+        ...state,
+        user_roles:action.payload.user_roles,
+        loadingData:false,
+      };
+    }
+    case ADD_ROLE:{
+      return {
+        ...state,
+        user_roles:[action.payload.role,...state.user_roles],
+        loadingData:false,
+      };
+    }
+    case SET_USER_ROLE:{
+      return {
+        ...state,
+        loadingData:false,
+        user_role:action.payload.role
+      };
+    }
+    case DELETE_ROLE:{
+      let newRoles= [...state.user_roles];
+      newRoles.splice(newRoles.findIndex((role)=>role.id==action.payload.id),1);
+      return {
+        ...state,
+        user_roles:newRoles
+      };
+    }
+    case EDIT_USER_ROLES:{
+      let newRoles= [...state.user_roles];
+      newRoles.splice(newRoles.findIndex((role)=>role.id==action.payload.role.id),1,action.payload.role);
+      return {
+        ...state,
+        user_roles:newRoles
+      };
+    }
     case EDIT_COMPANY_LIST:{
       let newCompanies= [...state.companies];
       newCompanies.splice(newCompanies.findIndex((company)=>company.id==action.payload.company.id),1,action.payload.company);
@@ -36,6 +110,12 @@ export default function taskReducer (state = initialState, action) {
         companies:newCompanies
       };
     }
+    case SET_COMPANIES:
+      return {
+        ...state,
+        companies: action.payload.companies,
+        loadingData:false,
+      };
     case SET_COMPANY:{
       return {
         ...state,
@@ -205,19 +285,6 @@ export default function taskReducer (state = initialState, action) {
         ...state,
         projects: action.payload.projects,
         loadingProjects:false,
-      };
-
-    case SET_COMPANIES:
-      return {
-        ...state,
-        companies: action.payload.companies,
-        loadingData:false,
-      };
-    case SET_STATUSES:
-      return {
-        ...state,
-        statuses: action.payload.statuses,
-        loadingData:false,
       };
     case SET_USERS:
       return {

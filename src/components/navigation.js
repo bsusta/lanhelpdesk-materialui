@@ -11,8 +11,12 @@ import CompanyAdd from "./settings/companies/companyAdd";
 import CompanyEdit from "./settings/companies/companyEdit";
 import Imaps from "./settings/imaps";
 import Roles from "./settings/roles";
+import RoleAdd from "./settings/roles/roleAdd";
+import RoleEdit from "./settings/roles/HOCRoleEdit";
 import Smtps from "./settings/smtps";
 import Statuses from "./settings/statuses";
+import StatusAdd from "./settings/statuses/statusAdd";
+import StatusEdit from "./settings/statuses/HOCStatusEdit";
 import TaskAttributes from "./settings/taskAttributes";
 import Units from "./settings/units";
 import Users from "./settings/users";
@@ -35,8 +39,12 @@ class Navigation extends Component {
               <Route path="/settings/companies/edit/:id" component={CompanyEdit} />
               <Route exact path="/settings/imaps" component={Imaps} />
               <Route exact path="/settings/roles" component={Roles} />
+              <Route exact path="/settings/roles/add" component={RoleAdd} />
+              <Route path="/settings/roles/edit/:id" component={RoleEdit} />
               <Route exact path="/settings/smtps" component={Smtps} />
               <Route exact path="/settings/statuses" component={Statuses} />
+              <Route exact path="/settings/statuses/add" component={StatusAdd} />
+              <Route path="/settings/statuses/edit/:id" component={StatusEdit} />
               <Route exact path="/settings/task-attributes" component={TaskAttributes} />
               <Route exact path="/settings/units" component={Units} />
               <Route exact path="/settings/users" component={Users} />

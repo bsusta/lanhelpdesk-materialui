@@ -1,8 +1,9 @@
 import {SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_STATUSES, SET_USERS, SET_UNITS, SET_TASK, SET_TASKS_AND_PROJECTS,
   START_LOADING,SET_TASK_ATTRIBUTES, EDIT_TASK_LIST, ADD_TO_TASK_LIST, SET_COMMENTS, START_LOADING_COMMENTS,ADD_NEW_COMMENT,
   START_LOADING_ITEMS, SET_ITEMS, ADD_NEW_ITEM, DELETE_ITEM, EDIT_ITEM_LIST, SET_ITEM, SET_USER_ATTRIBUTES,EDIT_USER_LIST,
-  DELETE_TASK, ADD_USER, ADD_COMPANY,SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,DELETE_COMPANY, DELETE_USER } from '../types';
-import {TASK_LIST, PROJECT_LIST,COMPANIES_LIST,STATUSES_LIST,USERS_LIST,UNITS_LIST, TASK, COMMENTS, ITEMS_LIST, USER, USER_ROLES, COMPANY } from '../urls';
+  DELETE_TASK, ADD_USER, ADD_COMPANY,SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,DELETE_COMPANY, DELETE_USER, SET_USER_ROLES,
+  ADD_ROLE, DELETE_ROLE, SET_USER_ROLE, EDIT_USER_ROLES, DELETE_STATUS, ADD_STATUS, SET_STATUS, EDIT_STATUSES } from '../types';
+import {TASK_LIST, PROJECT_LIST,COMPANIES_LIST,STATUSES_LIST,USERS_LIST,UNITS_LIST, TASK, COMMENTS, ITEMS_LIST, USER, USER_ROLES,USER_ROLE, COMPANY, STATUS } from '../urls';
 
 export const openAddingOfUser = (history) => {
   return (dispatch) => {
@@ -100,7 +101,6 @@ export const editUser = (user,listUser) => {
     });
   };
 };
-
 export const deleteUser = (id) => {
   return (dispatch) => {
     Promise.all([
@@ -216,6 +216,104 @@ export const deleteCompany = (id) => {
   };
 };
 
+export const getUserRoles = () => {
+  return (dispatch) => {
+    fetch(USER_ROLES, {
+      method: 'GET',
+    }).then((response)=> response.json().then(response => {
+      dispatch({type: SET_USER_ROLES, payload:{user_roles:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const deleteRole = (id) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(USER_ROLES+'/'+id, {
+        method: 'DELETE',
+      }),
+      fetch(USER_ROLE+'/'+id, {
+        method: 'DELETE',
+      })
+    ]).then((responses)=>dispatch({type: DELETE_ROLE, payload:{id}}))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const getRole = (id) => {
+  return (dispatch) => {
+    let url=USER_ROLE+'/'+id;
+    fetch(url, {
+      method: 'GET',
+    }).then((response) =>response.json().then((response) => {
+      dispatch({type: SET_USER_ROLE, payload:{role:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const addRole = (newRole) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(USER_ROLES, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body:JSON.stringify({title:newRole.title,is_active: newRole.is_active,order:newRole.order}),
+      }),
+      fetch(USER_ROLE, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body:JSON.stringify(newRole),
+      })
+    ]).then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
+      dispatch({type: ADD_ROLE, payload:{role:{title:newRole.title,is_active: newRole.is_active,order:newRole.order,id:response1.id}}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const editRole = (role,id) => {
+  return (dispatch) => {
+    let listURL = USER_ROLES + '/' + id;
+    let roleURL = USER_ROLE + '/' + id;
+    Promise.all([
+      fetch(listURL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify({title:role.title,is_active:role.is_active,order:role.order}),
+      }),
+      fetch(roleURL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify(role),
+      })
+    ])
+    .then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
+      dispatch({type: EDIT_USER_ROLES, payload:{role:{id,title:role.title,is_active:role.is_active,order:role.order}}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+
 export const getProjects = () => {
   return (dispatch) => {
     dispatch({type:START_LOADING_PROJECTS});
@@ -229,7 +327,6 @@ export const getProjects = () => {
     });
   };
 };
-
 export const getTasks = () => {
   return (dispatch) => {
     fetch(TASK_LIST, {
@@ -242,13 +339,114 @@ export const getTasks = () => {
     });
   };
 };
-
-
 export const startLoading = () => {
   return (dispatch) => {
     dispatch({type: START_LOADING });
   };
 };
+
+export const getStatuses = () => {
+  return (dispatch) => {
+    fetch(STATUSES_LIST, {
+      method: 'GET',
+    }).then((response)=> response.json().then(response => {
+      dispatch({type: SET_STATUSES, payload:{statuses:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const deleteStatus = (id) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(STATUSES_LIST+'/'+id, {
+        method: 'DELETE',
+      }),
+      fetch(STATUS+'/'+id, {
+        method: 'DELETE',
+      })
+    ]).then((responses)=>dispatch({type: DELETE_STATUS, payload:{id}}))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const getStatus = (id) => {
+  return (dispatch) => {
+    let url=STATUS+'/'+id;
+    fetch(url, {
+      method: 'GET',
+    }).then((response) =>response.json().then((response) => {
+      dispatch({type: SET_STATUS, payload:{status:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const addStatus = (newStatus) => {
+  return (dispatch) => {
+    Promise.all([
+      fetch(STATUSES_LIST, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body:JSON.stringify({title:newStatus.title,color: newStatus.color,order:newStatus.order}),
+      }),
+      fetch(STATUS, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body:JSON.stringify(newStatus),
+      })
+    ]).then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
+      dispatch({type: ADD_STATUS, payload:{role:{title:newStatus.title,color: newStatus.color,order:newStatus.order,id:response1.id}}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const editStatus = (status,id) => {
+  return (dispatch) => {
+    let listURL = STATUSES_LIST + '/' + id;
+    let statusURL = STATUS + '/' + id;
+    Promise.all([
+      fetch(listURL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify({title:status.title,color: status.color,order:status.order}),
+      }),
+      fetch(statusURL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify(status),
+      })
+    ])
+    .then(([response1,response2])=>Promise.all([response1.json(),response2.json()]).then(([response1,response2])=>{
+      dispatch({type: EDIT_STATUSES, payload:{status:{id,title:status.title,color: status.color,order:status.order}}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+
+
+
+
+
 
 ////////////////////////////////////////////////////////////
 
@@ -384,8 +582,6 @@ export const addComment = (comment) => {
   };
 };
 
-
-
 export const getTasksAndProjects = () => {
   return (dispatch) => {
     Promise.all([
@@ -408,7 +604,6 @@ export const getTasksAndProjects = () => {
   });
   };
 };
-
 export const getTaskAttributes = (id) => {
   return (dispatch) => {
     let taskURL = TASK+'/?id='+id;
@@ -495,18 +690,6 @@ export const getTask = (id) => {
 };
 
 
-export const getStatuses = () => {
-  return (dispatch) => {
-    fetch(STATUSES_LIST, {
-      method: 'GET',
-    }).then((response)=> response.json().then(response => {
-      dispatch({type: SET_STATUSES, payload:{statuses:response}});
-    }))
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
-};
 export const getUsers = () => {
   return (dispatch) => {
     fetch(USERS_LIST, {

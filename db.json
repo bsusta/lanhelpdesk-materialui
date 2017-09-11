@@ -313,126 +313,142 @@
       "numberOfTasks": 2
     }
   ],
-  "project": [{
-    "id": 2,
-    "title":"Projekt 2",
-    "users_ACL":[{
-      "id": 2,
-      "username": "pk",
-      "name": "Peter Karpa",
-      "email": "pk@email.sk",
-      "is_active": true,
-      "company": {
-        "id": "1",
-        "title": "prva firma"
-      },
-      "ACL": {
-        "view_own_tasks":true,
-        "view_tasks_from_users_company":true,
-        "view_all_tasks":true,
-        "create_task":true,
-        "resolve_task":true,
-        "delete_task":true,
-        "view_internal_note":true,
-        "edit_internal_note":true,
-        "edit_project":true
-        }
-      },
+  "project": [
     {
-      "id": 1,
-      "username": "mk",
-      "name": "Matej Kurka",
-      "email": "mk@email.sk",
-      "is_active": true,
-      "company": {
-        "id": "1",
-        "title": "prva firma"
+      "id": 2,
+      "title": "Projekt 2",
+      "users_ACL": [
+        {
+          "id": 2,
+          "username": "pk",
+          "name": "Peter Karpa",
+          "email": "pk@email.sk",
+          "is_active": true,
+          "company": {
+            "id": "1",
+            "title": "prva firma"
+          },
+          "ACL": {
+            "view_own_tasks": true,
+            "view_tasks_from_users_company": true,
+            "view_all_tasks": true,
+            "create_task": true,
+            "resolve_task": true,
+            "delete_task": true,
+            "view_internal_note": true,
+            "edit_internal_note": true,
+            "edit_project": true
+          }
         },
-      "ACL": {
-        "view_own_tasks":true,
-        "view_tasks_from_users_company":true,
-        "view_all_tasks":true,
-        "create_task":true,
-        "resolve_task":true,
-        "delete_task":true,
-        "view_internal_note":true,
-        "edit_internal_note":true,
-        "edit_project":true
+        {
+          "id": 1,
+          "username": "mk",
+          "name": "Matej Kurka",
+          "email": "mk@email.sk",
+          "is_active": true,
+          "company": {
+            "id": "1",
+            "title": "prva firma"
+          },
+          "ACL": {
+            "view_own_tasks": true,
+            "view_tasks_from_users_company": true,
+            "view_all_tasks": true,
+            "create_task": true,
+            "resolve_task": true,
+            "delete_task": true,
+            "view_internal_note": true,
+            "edit_internal_note": true,
+            "edit_project": true
+          }
         }
-      }]
+      ]
     },
     {
       "id": 2,
-      "title":"Projekt 2",
-      "users_ACL":[{
-        "id": 2,
-        "username": "pk",
-        "name": "Peter Karpa",
-        "email": "pk@email.sk",
-        "is_active": true,
-        "company": {
-          "id": "1",
-          "title": "prva firma"
-        },
-        "ACL": {
-          "view_own_tasks":true,
-          "view_tasks_from_users_company":true,
-          "view_all_tasks":true,
-          "create_task":true,
-          "resolve_task":true,
-          "delete_task":true,
-          "view_internal_note":true,
-          "edit_internal_note":true,
-          "edit_project":true
-          }
-        },
-      {
-        "id": 1,
-        "username": "mk",
-        "name": "Matej Kurka",
-        "email": "mk@email.sk",
-        "is_active": true,
-        "company": {
-          "id": "1",
-          "title": "prva firma"
+      "title": "Projekt 2",
+      "users_ACL": [
+        {
+          "id": 2,
+          "username": "pk",
+          "name": "Peter Karpa",
+          "email": "pk@email.sk",
+          "is_active": true,
+          "company": {
+            "id": "1",
+            "title": "prva firma"
           },
-        "ACL": {
-          "view_own_tasks":true,
-          "view_tasks_from_users_company":true,
-          "view_all_tasks":true,
-          "create_task":true,
-          "resolve_task":true,
-          "delete_task":true,
-          "view_internal_note":true,
-          "edit_internal_note":true,
-          "edit_project":true
+          "ACL": {
+            "view_own_tasks": true,
+            "view_tasks_from_users_company": true,
+            "view_all_tasks": true,
+            "create_task": true,
+            "resolve_task": true,
+            "delete_task": true,
+            "view_internal_note": true,
+            "edit_internal_note": true,
+            "edit_project": true
           }
-        }]
-      }],
+        },
+        {
+          "id": 1,
+          "username": "mk",
+          "name": "Matej Kurka",
+          "email": "mk@email.sk",
+          "is_active": true,
+          "company": {
+            "id": "1",
+            "title": "prva firma"
+          },
+          "ACL": {
+            "view_own_tasks": true,
+            "view_tasks_from_users_company": true,
+            "view_all_tasks": true,
+            "create_task": true,
+            "resolve_task": true,
+            "delete_task": true,
+            "view_internal_note": true,
+            "edit_internal_note": true,
+            "edit_project": true
+          }
+        }
+      ]
+    }
+  ],
   "statuses": [
     {
       "id": 1,
+      "is_active": true,
       "title": "New",
       "color": "#2DA3EC",
       "order": 1
     },
     {
       "id": 2,
+      "is_active": true,
       "title": "Pending",
       "color": "#ff9c00",
       "order": 2
     },
     {
       "id": 3,
+      "is_active": true,
       "title": "Closed",
       "color": "#b3b3b3",
       "order": 3
     },
     {
       "id": 4,
+      "is_active": true,
       "title": "Open",
       "color": "#68bc00",
       "order": 4
+    },
+    {
+      "title": "Modry",
+      "color": "#22acd8",
+      "order": "12",
+      "id": 6
     }
   ],
   "status": [
@@ -441,32 +457,40 @@
       "title": "New",
       "color": "#2DA3EC",
       "order": 1,
-      "is_active":true,
-      "description":"popis"
+      "is_active": true,
+      "description": "popis"
     },
     {
       "id": 2,
       "title": "Pending",
       "color": "#ff9c00",
       "order": 2,
-      "is_active":true,
-      "description":"popis 2"
+      "is_active": true,
+      "description": "popis 2"
     },
     {
       "id": 3,
       "title": "Closed",
       "color": "#b3b3b3",
       "order": 3,
-      "is_active":true,
-      "description":"popis 3"
+      "is_active": true,
+      "description": "popis 3"
     },
     {
       "id": 4,
       "title": "Open",
       "color": "#68bc00",
       "order": 4,
-      "is_active":true,
-      "description":"popis 4"
+      "is_active": true,
+      "description": "popis 4"
+    },
+    {
+      "is_active": true,
+      "title": "Modry",
+      "description": "uplny",
+      "order": "12",
+      "color": "#22acd8",
+      "id": 6
     }
   ],
   "comments": [
@@ -581,13 +605,13 @@
   "units": [
     {
       "id": 1,
-      "is_active":true,
+      "is_active": true,
       "title": "Kilogram",
       "shortcut": "kg"
     },
     {
       "id": 2,
-      "is_active":true,
+      "is_active": true,
       "title": "Centimeter",
       "shortcut": "cm"
     }
@@ -626,19 +650,31 @@
       "id": 1,
       "order": 1,
       "title": "Admin",
-      "is_active":true
+      "is_active": true
     },
     {
       "id": 2,
       "order": 2,
       "title": "Manager",
-      "is_active":true
+      "is_active": true
     },
     {
       "id": 3,
       "order": 3,
       "title": "Agent",
-      "is_active":true
+      "is_active": true
+    },
+    {
+      "title": "nova",
+      "is_active": true,
+      "order": "4",
+      "id": 4
+    },
+    {
+      "title": "abce",
+      "is_active": false,
+      "order": "101",
+      "id": 5
     }
   ],
   "user-role": [
@@ -646,100 +682,98 @@
       "id": 1,
       "order": 1,
       "title": "Admin",
-      "is_active":true,
-      "description":"rolaaa",
-      "ACL":{
-        "login_to_system":true,
-        "share_filters":true,
-        "project_shared_filters":true,
-        "report_filters":true,
-        "share_tags":true,
-        "create_projects":true,
-        "sent_emails_from_comments":true,
-        "create_tasks":true,
-        "create_tasks_in_all_projects":true,
-        "update_all_tasks":true,
-        "user_settings":true,
-        "user_role_settings":true,
-        "company_attribute_settings":true,
-        "company_settings":true,
-        "status_settings":true,
-        "task_attribute_settings":true,
-        "unit_settings":true,
-        "system_settings":true,
-        "imap_settings":true,
-        "smtp_setting":true
+      "is_active": true,
+      "description": "rolaaa",
+      "ACL": {
+        "edit_project": true,
+        "create_task": true,
+        "resolve_task": true,
+        "delete_task": true,
+        "view_internal_note": true,
+        "view_all_tasks": true,
+        "view_own_tasks": true,
+        "view_tasks_from_users_company": true
       }
     },
     {
       "id": 2,
       "order": 2,
       "title": "Manager",
-      "is_active":true,
-      "description":"rolaaa",
-      "ACL":{
-        "login_to_system":true,
-        "share_filters":true,
-        "project_shared_filters":true,
-        "report_filters":true,
-        "share_tags":true,
-        "create_projects":true,
-        "sent_emails_from_comments":true,
-        "create_tasks":true,
-        "create_tasks_in_all_projects":true,
-        "update_all_tasks":true,
-        "user_settings":true,
-        "user_role_settings":true,
-        "company_attribute_settings":true,
-        "company_settings":true,
-        "status_settings":true,
-        "task_attribute_settings":true,
-        "unit_settings":true,
-        "system_settings":true,
-        "imap_settings":true,
-        "smtp_setting":true
+      "is_active": true,
+      "description": "rolaaa",
+      "ACL": {
+        "edit_project": true,
+        "create_task": true,
+        "resolve_task": true,
+        "delete_task": true,
+        "view_internal_note": true,
+        "view_all_tasks": true,
+        "view_own_tasks": true,
+        "view_tasks_from_users_company": true
       }
     },
     {
       "id": 3,
       "order": 3,
       "title": "Agent",
-      "is_active":true,
-      "description":"rolaaa",
-      "ACL":{
-        "login_to_system":true,
-        "share_filters":true,
-        "project_shared_filters":true,
-        "report_filters":true,
-        "share_tags":true,
-        "create_projects":true,
-        "sent_emails_from_comments":true,
-        "create_tasks":true,
-        "create_tasks_in_all_projects":true,
-        "update_all_tasks":true,
-        "user_settings":true,
-        "user_role_settings":true,
-        "company_attribute_settings":true,
-        "company_settings":true,
-        "status_settings":true,
-        "task_attribute_settings":true,
-        "unit_settings":true,
-        "system_settings":true,
-        "imap_settings":true,
-        "smtp_setting":true
+      "is_active": true,
+      "description": "rolaaa",
+      "ACL": {
+        "edit_project": true,
+        "create_task": true,
+        "resolve_task": true,
+        "delete_task": true,
+        "view_internal_note": true,
+        "view_all_tasks": true,
+        "view_own_tasks": true,
+        "view_tasks_from_users_company": true
       }
+    },
+    {
+      "is_active": true,
+      "title": "nova",
+      "description": "rol",
+      "order": "4",
+      "ACL": {
+        "edit_project": false,
+        "create_task": false,
+        "resolve_task": true,
+        "delete_task": false,
+        "view_internal_note": false,
+        "view_all_tasks": false,
+        "view_own_tasks": true,
+        "view_tasks_from_users_company": false
+      },
+      "id": 4
+    },
+    {
+      "is_active": false,
+      "title": "abce",
+      "description": "defe",
+      "order": "101",
+      "ACL": {
+        "edit_project": true,
+        "create_task": false,
+        "resolve_task": false,
+        "delete_task": true,
+        "view_internal_note": false,
+        "view_all_tasks": false,
+        "view_own_tasks": true,
+        "view_tasks_from_users_company": false
+      },
+      "id": 5
     }
   ],
-  "smtp":[
+  "smtp": [
     {
-       "id": 1,
-       "host": "Host",
-       "port": 3306,
-       "email": "mb@web-solutions.sk",
-       "name": "test",
-       "password": "test",
-       "ssl": true,
-       "tls": false
-     }
- ]
+      "id": 1,
+      "host": "Host",
+      "port": 3306,
+      "email": "mb@web-solutions.sk",
+      "name": "test",
+      "password": "test",
+      "ssl": true,
+      "tls": false
+    }
+  ]
 }

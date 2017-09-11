@@ -4,7 +4,7 @@ const initialState = {
   opened: true,
 };
 
-export default function loginReducer(state = initialState, action) {
+export default function drawerReducer(state = initialState, action) {
   switch (action.type) {
     case OPEN_DRAWER:
       return { ...state, opened: true };

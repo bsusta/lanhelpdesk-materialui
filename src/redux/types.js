@@ -10,7 +10,6 @@ export const SET_TASKS_AND_PROJECTS = 'SET_TASKS_AND_PROJECTS';
 export const SET_TASKS = 'SET_TASKS';
 export const SET_PROJECTS = 'SET_PROJECTS';
 export const SET_COMPANIES = 'SET_COMPANIES';
-export const SET_STATUSES = 'SET_STATUSES';
 export const SET_USERS = 'SET_USERS';
 export const SET_CUSTOM_ATTRIBUTES = 'SET_CUSTOM_ATTRIBUTES';
 export const SET_UNITS = 'SET_UNITS';
@@ -41,5 +40,17 @@ export const ADD_COMPANY = 'ADD_COMPANY';
 export const SET_COMPANY = 'SET_COMPANY';
 export const EDIT_COMPANY_LIST = 'EDIT_COMPANY_LIST';
 export const DELETE_COMPANY = 'DELETE_COMPANY';
+
+export const SET_USER_ROLES = 'SET_USER_ROLES';
+export const ADD_ROLE = 'ADD_ROLE';
+export const SET_USER_ROLE = 'SET_ROLE';
+export const EDIT_USER_ROLES = 'EDIT_USER_ROLES';
+export const DELETE_ROLE = 'DELETE_ROLE';
+
+export const SET_STATUSES = 'SET_STATUSES';
+export const ADD_STATUS = 'ADD_STATUS';
+export const SET_STATUS = 'SET_STATUS';
+export const EDIT_STATUSES = 'EDIT_STATUSES';
+export const DELETE_STATUS = 'DELETE_STATUS';
 
 export const START_LOADING_PROJECTS = 'START_LOADING_PROJECTS';
