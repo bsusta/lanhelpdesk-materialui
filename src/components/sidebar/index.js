@@ -17,6 +17,7 @@ class Sidebar extends Component {
         <AppBar
           title="Lanhelpdesk Website"
           style={{
+            paddingLeft: this.props.opened ? 276 : 20,
             backgroundColor: "#3F51B5"
           }}
           iconElementRight={
@@ -35,7 +36,7 @@ class Sidebar extends Component {
             this.props.opened ? this.props.closeDrawer : this.props.openDrawer
           }
         />
-        <Drawer open={this.props.opened} docked={true} style={{position: "fixed"}}>
+        <Drawer open={this.props.opened} docked={true}>
           <SidebarContent />
         </Drawer>
       </div>

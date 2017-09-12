@@ -10,7 +10,6 @@ class HOCStatusEdit extends Component {
     this.props.getStatus(parseInt(this.props.match.params.id));
   }
   render() {
-    console.log(this.props);
     if(this.props.loadingData||!this.props.status){
       return (<div>Loading...</div>);
     }

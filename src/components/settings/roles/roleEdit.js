@@ -31,7 +31,7 @@ class RoleEdit extends Component {
         is_active:this.state.is_active,
         title:this.state.title,
         description:this.state.description,
-        order:this.state.order,
+        order:parseInt(this.state.order),
         ACL: {
           edit_project:this.state.edit_project,
           create_task:this.state.create_task,

@@ -12,7 +12,6 @@ export const SET_PROJECTS = 'SET_PROJECTS';
 export const SET_COMPANIES = 'SET_COMPANIES';
 export const SET_USERS = 'SET_USERS';
 export const SET_CUSTOM_ATTRIBUTES = 'SET_CUSTOM_ATTRIBUTES';
-export const SET_UNITS = 'SET_UNITS';
 export const SET_TASK = 'SET_TASK';
 export const START_LOADING = 'START_LOADING';
 export const SET_TASK_ATTRIBUTES = 'SET_TASK_ATTRIBUTES';
@@ -52,5 +51,23 @@ export const ADD_STATUS = 'ADD_STATUS';
 export const SET_STATUS = 'SET_STATUS';
 export const EDIT_STATUSES = 'EDIT_STATUSES';
 export const DELETE_STATUS = 'DELETE_STATUS';
+
+export const EDIT_UNITS = 'EDIT_UNITS';
+export const SET_UNITS = 'SET_UNITS';
+export const SET_UNIT = 'SET_UNIT';
+export const ADD_UNIT = 'ADD_UNIT';
+export const DELETE_UNIT = 'DELETE_UNIT';
+
+export const EDIT_SMTPS = 'EDIT_SMTPS';
+export const SET_SMTPS = 'SET_SMTPS';
+export const SET_SMTP = 'SET_SMTP';
+export const ADD_SMTP = 'ADD_SMTP';
+export const DELETE_SMTP = 'DELETE_SMTP';
+
+export const EDIT_IMAPS = 'EDIT_IMAPS';
+export const SET_IMAPS = 'SET_IMAPS';
+export const SET_IMAP = 'SET_IMAP';
+export const ADD_IMAP = 'ADD_IMAP';
+export const DELETE_IMAP = 'DELETE_IMAP';
 
 export const START_LOADING_PROJECTS = 'START_LOADING_PROJECTS';

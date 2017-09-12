@@ -22,6 +22,8 @@ import MaterialTable from "./materialTable";
 import CommentsList from "./commentsList";
 import TaskAttributes from "./taskAttributes";
 import CommentAdd from "./commentAdd";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 class TaskEdit extends Component {
   constructor(props) {
@@ -65,6 +67,8 @@ class TaskEdit extends Component {
         <Row>
           <Col xs={8} style={{ borderRight: "1px solid grey",padding:10 }}>
             <TextField
+              floatingLabelStyle={{fontSize:17}}
+              style={{fontSize:30}}
               floatingLabelText="Task name"
               fullWidth={true}
               floatingLabelFixed={true}
@@ -88,6 +92,24 @@ class TaskEdit extends Component {
               fullWidth={true}
               floatingLabelFixed={true}
             />
+            <SelectField
+              floatingLabelText="Project"
+              value={this.state.value}
+              onChange={this.handleChange}
+              fullWidth={true}
+              style={{ marginLeft: 30 }}
+            >
+              <MenuItem value={1} primaryText="Project 1 " />
+            </SelectField>
+            <SelectField
+              floatingLabelText="Assigned to"
+              value={this.state.value}
+              onChange={this.handleChange}
+              fullWidth={true}
+              style={{ marginLeft: 30 }}
+            >
+              <MenuItem value={1} primaryText="Matus Karpan" />
+            </SelectField>
           <MaterialTable/>
           <CommentAdd/>
           <CommentsList/>

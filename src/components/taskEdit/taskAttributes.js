@@ -26,6 +26,9 @@ class TaskAttributes extends Component {
     value: 1
   };
   handleChange = (event, index, value) => this.setState({ value });
+  /*
+  tag, attachement
+  */
 
   render() {
     return (
@@ -60,14 +63,69 @@ class TaskAttributes extends Component {
           </SelectField>
         </div>
 
+        <SelectField
+          floatingLabelText="Requester"
+          value={this.state.value}
+          onChange={this.handleChange}
+          fullWidth={true}
+          style={{ marginLeft: 30 }}
+        >
+          <MenuItem value={1} primaryText="Matej" />
+        </SelectField>
+        <SelectField
+          floatingLabelText="Company"
+          value={this.state.value}
+          onChange={this.handleChange}
+          fullWidth={true}
+          style={{ marginLeft: 30 }}
+        >
+          <MenuItem value={1} primaryText="Lansystems" />
+        </SelectField>
+
         <Table>
           <TableBody displayRowCheckbox={false}>
-            <TableRow>
+            <TableRow style={{border:"none"}}>
               <TableRowColumn>
                 <TextField
                   fullWidth={true}
                   hintText="time"
                   floatingLabelText="Start time"
+                  floatingLabelFixed={true}
+                />
+              </TableRowColumn>
+              <TableRowColumn style={{border:"none"}}>
+                <TextField
+                  fullWidth={true}
+                  hintText="date"
+                  floatingLabelText="date"
+                  floatingLabelFixed={true}
+                />
+              </TableRowColumn>
+            </TableRow>
+            <TableRow style={{border:"none"}}>
+              <TableRowColumn>
+                <TextField
+                  fullWidth={true}
+                  hintText="time"
+                  floatingLabelText="Deadline time"
+                  floatingLabelFixed={true}
+                />
+              </TableRowColumn>
+              <TableRowColumn>
+                <TextField
+                  fullWidth={true}
+                  hintText="date"
+                  floatingLabelText="date"
+                  floatingLabelFixed={true}
+                />
+              </TableRowColumn>
+            </TableRow>
+            <TableRow style={{border:"none"}}>
+              <TableRowColumn>
+                <TextField
+                  fullWidth={true}
+                  hintText="time"
+                  floatingLabelText="Closed at"
                   floatingLabelFixed={true}
                 />
               </TableRowColumn>
@@ -82,6 +140,20 @@ class TaskAttributes extends Component {
             </TableRow>
           </TableBody>
         </Table>
+        <TextField
+          floatingLabelText="Tag"
+          multiLine={true}
+          fullWidth={true}
+          floatingLabelFixed={true}
+          rows={2}
+        />
+        <TextField
+          floatingLabelText="Attachement"
+          multiLine={true}
+          fullWidth={true}
+          floatingLabelFixed={true}
+          rows={2}
+        />
       </div>
     );
   }

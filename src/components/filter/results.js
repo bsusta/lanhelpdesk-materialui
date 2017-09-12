@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Table,
@@ -25,19 +25,18 @@ class TaskList extends Component {
       bulkPosition:null
     };
   }
-
+  
   componentWillMount(){
     this.props.getTasks();
   }
   render() {
-    console.log(this.context.router);
     if(this.props.loadingData){
       return (<div>Loading...</div>);
     }
     return (
       <div>
         <div style={{borderBottom: 'thick solid black',borderWidth:1,marginBottom:10}}>
-          <h2>Projekt 1</h2>
+          <h2>TaskList</h2>
         </div>
 
         <Popover
@@ -53,7 +52,6 @@ class TaskList extends Component {
 
         <RaisedButton label="DELETE" labelColor='#FFF' backgroundColor='red' />
         <RaisedButton label="BULK ACTIONS" labelColor='#FFF' backgroundColor='#81C0FA' style={{marginLeft:15}} onClick={(event)=>{event.preventDefault();this.setState({bulkOpen: true,bulkPosition: event.currentTarget});}} />
-        <RaisedButton style={{float:'right'}} label="EDIT PROJECT" labelColor='#FFF' backgroundColor='green' onClick={()=>this.props.history.push('/project/edit/1')} />
         {
           this.props.loadingData?<div>Loading...</div>:
         <Table multiSelectable={true}>

@@ -317,6 +317,7 @@
     {
       "id": 2,
       "title": "Projekt 2",
+      "is_active": true,
       "users_ACL": [
         {
           "id": 2,
@@ -367,6 +368,7 @@
     {
       "id": 2,
       "title": "Projekt 2",
+      "is_active": true,
       "users_ACL": [
         {
           "id": 2,
@@ -447,7 +449,7 @@
     {
       "title": "Modry",
       "color": "#22acd8",
-      "order": "12",
+      "order": "0",
       "id": 6
     }
   ],
@@ -488,7 +490,7 @@
       "is_active": true,
       "title": "Modry",
       "description": "uplny",
-      "order": "12",
+      "order": "0",
       "color": "#22acd8",
       "id": 6
     }
@@ -614,6 +616,12 @@
       "is_active": true,
       "title": "Centimeter",
       "shortcut": "cm"
+    },
+    {
+      "is_active": true,
+      "title": "Kusov",
+      "shortcut": "ks",
+      "id": 3
     }
   ],
   "items": [
@@ -767,6 +775,7 @@
   "smtp": [
     {
       "id": 1,
+      "is_active": true,
       "host": "Host",
       "port": 3306,
       "email": "mb@web-solutions.sk",
@@ -774,6 +783,51 @@
       "password": "test",
       "ssl": true,
       "tls": false
+    },
+    {
+      "id": 2,
+      "is_active": true,
+      "host": "180.20.20",
+      "port": 12344,
+      "email": "g@g.sk",
+      "name": "aka",
+      "password": "raka",
+      "ssl": false,
+      "tls": true
+    }
+  ],
+  "imap": [
+    {
+      "id": 1,
+      "is_active": true,
+      "host": "test",
+      "port": 3306,
+      "name": "test",
+      "password": "test",
+      "ssl": true,
+      "inbox_email": "test@test.sk",
+      "move_email": "test@test.sk",
+      "ignore_certificate": false,
+      "project": {
+        "id": 1,
+        "title": "Projekt 1"
+      }
+    },
+    {
+      "is_active": true,
+      "host": "asd",
+      "port": null,
+      "name": "aaaasd",
+      "password": "adasd",
+      "ssl": true,
+      "inbox_email": "asdasd",
+      "move_email": "asdasd",
+      "ignore_certificate": true,
+      "project": {
+        "id": 1,
+        "title": "Projekt 1"
+      },
+      "id": 2
     }
   ]
 }

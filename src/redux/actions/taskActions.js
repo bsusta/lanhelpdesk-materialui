@@ -1,9 +1,235 @@
-import {SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_STATUSES, SET_USERS, SET_UNITS, SET_TASK, SET_TASKS_AND_PROJECTS,
+import {SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_USERS, SET_TASK, SET_TASKS_AND_PROJECTS,
   START_LOADING,SET_TASK_ATTRIBUTES, EDIT_TASK_LIST, ADD_TO_TASK_LIST, SET_COMMENTS, START_LOADING_COMMENTS,ADD_NEW_COMMENT,
   START_LOADING_ITEMS, SET_ITEMS, ADD_NEW_ITEM, DELETE_ITEM, EDIT_ITEM_LIST, SET_ITEM, SET_USER_ATTRIBUTES,EDIT_USER_LIST,
-  DELETE_TASK, ADD_USER, ADD_COMPANY,SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,DELETE_COMPANY, DELETE_USER, SET_USER_ROLES,
-  ADD_ROLE, DELETE_ROLE, SET_USER_ROLE, EDIT_USER_ROLES, DELETE_STATUS, ADD_STATUS, SET_STATUS, EDIT_STATUSES } from '../types';
-import {TASK_LIST, PROJECT_LIST,COMPANIES_LIST,STATUSES_LIST,USERS_LIST,UNITS_LIST, TASK, COMMENTS, ITEMS_LIST, USER, USER_ROLES,USER_ROLE, COMPANY, STATUS } from '../urls';
+  DELETE_TASK, ADD_USER, ADD_COMPANY,SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,DELETE_COMPANY, DELETE_USER,
+  SET_USER_ROLES,ADD_ROLE, DELETE_ROLE, SET_USER_ROLE, EDIT_USER_ROLES,
+  SET_STATUSES,DELETE_STATUS, ADD_STATUS, SET_STATUS, EDIT_STATUSES,
+  EDIT_SMTPS,SET_SMTPS,SET_SMTP,ADD_SMTP,DELETE_SMTP,
+  EDIT_UNITS,SET_UNITS, SET_UNIT,ADD_UNIT,DELETE_UNIT,
+  EDIT_IMAPS, SET_IMAPS,SET_IMAP,ADD_IMAP,DELETE_IMAP} from '../types';
+import {TASK_LIST, PROJECT_LIST,COMPANIES_LIST,STATUSES_LIST,USERS_LIST,UNITS_LIST, TASK, COMMENTS, ITEMS_LIST, USER, USER_ROLES,USER_ROLE, COMPANY, STATUS, SMTP_LIST, IMAP } from '../urls';
+
+export const getIMAPs = () => {
+  return (dispatch) => {
+    fetch(IMAP, {
+      method: 'GET',
+    }).then((response)=> response.json().then(response => {
+      dispatch({type: SET_IMAPS, payload:{imaps:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const deleteIMAP = (id) => {
+  return (dispatch) => {
+      fetch(IMAP+'/'+id, {
+        method: 'DELETE',
+      })
+      .then((response)=>dispatch({type: DELETE_IMAP, payload:{id}}))
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+export const getIMAP = (id) => {
+  return (dispatch) => {
+    let url=IMAP+'/'+id;
+    fetch(url, {
+      method: 'GET',
+    }).then((response) =>response.json().then((response) => {
+      dispatch({type: SET_IMAP, payload:{imap:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const addIMAP = (imap) => {
+  return (dispatch) => {
+    fetch(IMAP, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(imap),
+    })
+    .then((response)=>response.json().then((response)=>{
+    dispatch({type: ADD_IMAP, payload:{imap:Object.assign({},imap,{id:response.id})}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const editIMAP = (imap,id) => {
+  return (dispatch) => {
+    let URL = IMAP + '/' + id;
+      fetch(URL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify(imap),
+      })
+    .then((response)=>response.json().then((response)=>{
+      dispatch({type: EDIT_IMAPS, payload:{imap:Object.assign({},imap,{id})}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+
+export const getSMTPs = () => {
+  return (dispatch) => {
+    fetch(SMTP_LIST, {
+      method: 'GET',
+    }).then((response)=> response.json().then(response => {
+      dispatch({type: SET_SMTPS, payload:{smtps:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const deleteSMTP = (id) => {
+  return (dispatch) => {
+      fetch(SMTP_LIST+'/'+id, {
+        method: 'DELETE',
+      })
+      .then((response)=>dispatch({type: DELETE_SMTP, payload:{id}}))
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+export const getSMTP = (id) => {
+  return (dispatch) => {
+    let url=SMTP_LIST+'/'+id;
+    fetch(url, {
+      method: 'GET',
+    }).then((response) =>response.json().then((response) => {
+      dispatch({type: SET_SMTP, payload:{smtp:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const addSMTP = (smtp) => {
+  return (dispatch) => {
+    fetch(SMTP_LIST, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(smtp),
+    })
+    .then((response)=>response.json().then((response)=>{
+    dispatch({type: ADD_SMTP, payload:{smtp:Object.assign({},smtp,{id:response.id})}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const editSMTP = (smtp,id) => {
+  return (dispatch) => {
+    let URL = SMTP_LIST + '/' + id;
+      fetch(URL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify(smtp),
+      })
+    .then((response)=>response.json().then((response)=>{
+      dispatch({type: EDIT_SMTPS, payload:{smtp:Object.assign({},smtp,{id})}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+
+export const getUnits = () => {
+  return (dispatch) => {
+    fetch(UNITS_LIST, {
+      method: 'GET',
+    }).then((response)=> response.json().then(response => {
+      dispatch({type: SET_UNITS, payload:{units:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const deleteUnit = (id) => {
+  return (dispatch) => {
+      fetch(UNITS_LIST+'/'+id, {
+        method: 'DELETE',
+      })
+      .then((response)=>dispatch({type: DELETE_ROLE, payload:{id}}))
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+export const getUnit = (id) => {
+  return (dispatch) => {
+    let url=UNITS_LIST+'/'+id;
+    fetch(url, {
+      method: 'GET',
+    }).then((response) =>response.json().then((response) => {
+      dispatch({type: SET_UNIT, payload:{unit:response}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const addUnit = (newUnit) => {
+  return (dispatch) => {
+    fetch(UNITS_LIST, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(newUnit),
+    })
+    .then((response)=>response.json().then((response)=>{
+    dispatch({type: ADD_UNIT, payload:{unit:Object.assign({},newUnit,{id:response.id})}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
+export const editUnit = (unit,id) => {
+  return (dispatch) => {
+    let URL = UNITS_LIST + '/' + id;
+      fetch(URL, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body:JSON.stringify(unit),
+      })
+    .then((response)=>response.json().then((response)=>{
+      dispatch({type: EDIT_UNITS, payload:{unit:Object.assign({},unit,{id})}});
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+};
 
 export const openAddingOfUser = (history) => {
   return (dispatch) => {
@@ -445,9 +671,6 @@ export const editStatus = (status,id) => {
 
 
 
-
-
-
 ////////////////////////////////////////////////////////////
 
 
@@ -696,18 +919,6 @@ export const getUsers = () => {
       method: 'GET',
     }).then((response)=> response.json().then(response => {
       dispatch({type: SET_USERS, payload:{users:response}});
-    }))
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
-};
-export const getUnits = () => {
-  return (dispatch) => {
-    fetch(UNITS_LIST, {
-      method: 'GET',
-    }).then((response)=> response.json().then(response => {
-      dispatch({type: SET_UNITS, payload:{units:response}});
     }))
     .catch(function (error) {
       console.log(error);

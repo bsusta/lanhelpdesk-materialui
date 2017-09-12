@@ -20,12 +20,14 @@ class Sidebar extends Component {
     return (
       <div
         style={{
-          paddingTop: 100,
           justifyContent: "flex-start",
           textAlign: "left"
         }}
       >
         <List>
+          <Link to="/filter">
+            <ListItem primaryText="Filter" leftIcon={<AddIcon />} />
+          </Link>
           <Link to="/task/edit">
             <ListItem primaryText="Task" leftIcon={<AddIcon />} />
           </Link>

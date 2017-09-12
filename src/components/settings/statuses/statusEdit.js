@@ -21,7 +21,7 @@ class StatusEdit extends Component {
   }
 
   submit(){
-    let status=Object.assign({},this.state);
+    let status=Object.assign({},this.state,{order:parseInt(this.state.order)});
     this.props.editStatus(status,this.props.id);
     this.props.history.goBack();
   }

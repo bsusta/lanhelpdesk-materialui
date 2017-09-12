@@ -3,27 +3,24 @@ import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Checkbox from "material-ui/Checkbox";
-import { SketchPicker } from 'react-color';
 
-import {addStatus} from '../../../redux/actions';
+import {addUnit} from '../../../redux/actions';
 import {processInteger} from '../../helperFunctions';
 
 
-class StatusAdd extends Component {
+class UnitAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
       is_active: true,
       title: "",
-      description: "",
-      order: "1",
-      color: "",
+      shortcut: "",
     };
   }
 
   submit(){
-    let status=Object.assign({},this.state,{order:parseInt(this.state.order)});
-    this.props.addStatus(status);
+    let unit=Object.assign({},this.state);
+    this.props.addUnit(unit);
     this.props.history.goBack();
   }
 
@@ -37,12 +34,12 @@ class StatusAdd extends Component {
             marginBottom: 10
           }}
         >
-          <h2>Add task status</h2>
+          <h2>Add item unit</h2>
         </div>
         <Checkbox label="Active" checked={this.state.is_active} onCheck={()=>this.setState({is_active:!this.state.is_active})} />
         <TextField
           hintText=""
-          floatingLabelText="Status name"
+          floatingLabelText="Unit name"
           floatingLabelFixed={true}
           fullWidth={true}
           onChange={(event,value)=>this.setState({title:value})}
@@ -50,24 +47,11 @@ class StatusAdd extends Component {
         />
         <TextField
           hintText=""
-          floatingLabelText="Status description"
+          floatingLabelText="Unit shortcut"
           floatingLabelFixed={true}
           fullWidth={true}
-          onChange={(event,value)=>this.setState({description:value})}
-          value={this.state.description}
-        />
-        <TextField
-          hintText=""
-          floatingLabelText="Order"
-          floatingLabelFixed={true}
-          fullWidth={true}
-          onChange={(event,value)=>{let result = processInteger(value);this.setState({order:(result?result:this.state.order)})}}
-          value={this.state.order}
-        />
-        <h3 style={{backgroundColor:this.state.color?this.state.color:'black',color:'white'}}>Color</h3>
-        <SketchPicker
-          color={this.state.color}
-          onChange={(val)=>this.setState({color:val.hex})}
+          onChange={(event,value)=>this.setState({shortcut:value})}
+          value={this.state.shortcut}
         />
         <div style={{marginTop:20,}}>
           <RaisedButton
@@ -91,4 +75,4 @@ const mapStateToProps = ({ taskData }) => {
   return {};
 };
 
-export default connect(mapStateToProps, {addStatus})(StatusAdd);
+export default connect(mapStateToProps, {addUnit})(UnitAdd);

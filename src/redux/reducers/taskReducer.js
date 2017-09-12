@@ -1,15 +1,16 @@
 
-import { SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_STATUSES, SET_USERS, SET_CUSTOM_ATTRIBUTES, SET_UNITS, SET_TASK,SET_TASKS_AND_PROJECTS,START_LOADING,
+import { SET_TASKS, SET_PROJECTS, SET_COMPANIES, SET_STATUSES, SET_USERS, SET_CUSTOM_ATTRIBUTES, SET_TASK,SET_TASKS_AND_PROJECTS,START_LOADING,
   SET_TASK_ATTRIBUTES, EDIT_TASK_LIST, ADD_TO_TASK_LIST, SET_COMMENTS, START_LOADING_COMMENTS,ADD_NEW_COMMENT, START_LOADING_ITEMS, SET_ITEMS,
   ADD_NEW_ITEM, DELETE_ITEM,EDIT_ITEM_LIST, SET_ITEM, DELETE_TASK, SET_USER_ATTRIBUTES, ADD_USER, EDIT_USER_LIST, ADD_COMPANY, SET_COMPANY, EDIT_COMPANY_LIST,START_LOADING_PROJECTS,
-  DELETE_COMPANY,DELETE_USER,SET_USER_ROLES, ADD_ROLE, DELETE_ROLE, SET_USER_ROLE, EDIT_USER_ROLES, DELETE_STATUS, ADD_STATUS, SET_STATUS, EDIT_STATUSES} from '../types';
+  DELETE_COMPANY,DELETE_USER,SET_USER_ROLES, ADD_ROLE, DELETE_ROLE, SET_USER_ROLE, EDIT_USER_ROLES, DELETE_STATUS, ADD_STATUS, SET_STATUS, EDIT_STATUSES,
+  EDIT_UNITS,SET_UNITS, SET_UNIT,ADD_UNIT,DELETE_UNIT, EDIT_SMTPS,SET_SMTPS,SET_SMTP,ADD_SMTP,DELETE_SMTP,
+  EDIT_IMAPS, SET_IMAPS,SET_IMAP,ADD_IMAP,DELETE_IMAP
+} from '../types';
 
 const initialState = {
   tasks:[],
   users:[],
   projects:[],
-  companies:[],
-  units:[],
   customAttributes:[],
   task:null,
   project:null,
@@ -23,13 +24,127 @@ const initialState = {
   user:null,
   user_roles:[],
   user_role:null,
+  companies:[],
   company:null,
   statuses:[],
   status:null,
+  units:[],
+  unit:null,
+  smtps:[],
+  smtp:null,
+  imaps:[],
+  imap:null
+  
 };
+
 
 export default function taskReducer (state = initialState, action) {
   switch (action.type) {
+    case EDIT_IMAPS:{
+      let newIMAPS= [...state.imaps];
+      newIMAPS.splice(newIMAPS.findIndex((imap)=>imap.id==action.payload.imap.id),1,action.payload.imap);
+      return {
+        ...state,
+        imaps:newIMAPS
+      };
+    }
+    case SET_IMAPS:
+      return {
+        ...state,
+        imaps: action.payload.imaps,
+        loadingData:false,
+      };
+    case SET_IMAP:{
+      return {
+        ...state,
+        imap:action.payload.imap,
+        loadingData:false,
+      };
+    }
+    case ADD_IMAP:{
+      return {
+        ...state,
+        imaps:[action.payload.imap,...state.imaps]
+      };
+    }
+    case DELETE_IMAP:{
+      let newIMAPS= [...state.imaps];
+      newIMAPS.splice(newIMAPS.findIndex((imap)=>imap.id==action.payload.id),1);
+      return {
+        ...state,
+        imaps:newIMAPS
+      };
+    }
+    case EDIT_SMTPS:{
+      let newSMTPS= [...state.smtps];
+      newSMTPS.splice(newSMTPS.findIndex((smtp)=>smtp.id==action.payload.smtp.id),1,action.payload.smtp);
+      return {
+        ...state,
+        smtps:newSMTPS
+      };
+    }
+    case SET_SMTPS:
+      return {
+        ...state,
+        smtps: action.payload.smtps,
+        loadingData:false,
+      };
+    case SET_SMTP:{
+      return {
+        ...state,
+        smtp:action.payload.smtp,
+        loadingData:false,
+      };
+    }
+    case ADD_SMTP:{
+      return {
+        ...state,
+        smtps:[action.payload.smtp,...state.smtps]
+      };
+    }
+    case DELETE_SMTP:{
+      let newSMTPS= [...state.smtps];
+      newSMTPS.splice(newSMTPS.findIndex((smtp)=>smtp.id==action.payload.id),1);
+      return {
+        ...state,
+        smtps:newSMTPS
+      };
+    }
+    case EDIT_UNITS:{
+      let newUnits= [...state.units];
+      newUnits.splice(newUnits.findIndex((unit)=>unit.id==action.payload.unit.id),1,action.payload.unit);
+      return {
+        ...state,
+        units:newUnits
+      };
+    }
+    case SET_UNITS:
+      return {
+        ...state,
+        units: action.payload.units,
+        loadingData:false,
+      };
+    case SET_UNIT:{
+      return {
+        ...state,
+        unit:action.payload.unit,
+        loadingData:false,
+      };
+    }
+    case ADD_UNIT:{
+      return {
+        ...state,
+        units:[action.payload.unit,...state.units]
+      };
+    }
+    case DELETE_UNIT:{
+      let newUnits= [...state.units];
+      newUnits.splice(newUnits.findIndex((unit)=>unit.id==action.payload.id),1);
+      return {
+        ...state,
+        units:newUnits
+      };
+    }
     case EDIT_STATUSES:{
       let newStatuses= [...state.statuses];
       newStatuses.splice(newStatuses.findIndex((status)=>status.id==action.payload.status.id),1,action.payload.status);
@@ -296,12 +411,6 @@ export default function taskReducer (state = initialState, action) {
         return {
           ...state,
           customAttributes: action.payload.customAttributes,
-          loadingData:false,
-        };
-    case SET_UNITS:
-        return {
-          ...state,
-          units: action.payload.units,
           loadingData:false,
         };
     case SET_TASK:
