@@ -51,16 +51,6 @@ class TaskAttributes extends Component {
               height: 20
             }}
           />
-
-          <SelectField
-            floatingLabelText="Company"
-            value={this.state.value}
-            onChange={this.handleChange}
-            fullWidth={true}
-            style={{ marginLeft: 30 }}
-          >
-            <MenuItem value={1} primaryText="Company 1 " />
-          </SelectField>
         </div>
 
         <SelectField
